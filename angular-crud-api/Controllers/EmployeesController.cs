@@ -70,5 +70,23 @@ namespace angular_crud_api.Controllers
 
             return Ok(employee);
         }
+
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id)
+        {
+            var employee = await _angularCrudDbContext.Employees.FindAsync(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            _angularCrudDbContext.Employees.Remove(employee);
+
+            await _angularCrudDbContext.SaveChangesAsync();
+
+            return Ok(employee);
+        }
     }
 }
