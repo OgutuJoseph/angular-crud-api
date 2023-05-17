@@ -53,7 +53,7 @@ namespace angular_crud_api.Controllers
         [Route("{id:Guid}")]
         public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, Employee updateEmployeeRequest)
         {
-            var employee = await _angularCrudDbContext.Employees.FindAsync(id)
+            var employee = await _angularCrudDbContext.Employees.FindAsync(id);
 
             if (employee == null)
             {
